@@ -1,5 +1,5 @@
 #################################################
-## Terraform code for CLO835 assignment 1  ######
+## Terraform code for CLO835 assignment 2  ######
 ## Maintainer - Rajat Garg   ####################
 #################################################
 
@@ -38,15 +38,15 @@ data "aws_iam_instance_profile" "instance_profile" {
 locals {
   default_tags = {
     "Owner"   = "Rajat"
-    "App"     = "DockerApp"
-    "Project" = "CLO835-Assignment1"
+    "App"     = "K8s-app"
+    "Project" = "CLO835-Assignment2"
   }
 }
 
 # Adding SSH key to Amazon EC2
 resource "aws_key_pair" "my_key" {
   key_name   = "linuxkey"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("~/.ssh/rajat.pub")
 }
 
 # Provision EC2 instance 
@@ -65,7 +65,7 @@ resource "aws_instance" "my_amazon" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "DockerServer"
+      "Name" = "K8s-Server"
     }
   )
 }
@@ -113,14 +113,14 @@ resource "aws_security_group" "my_sg" {
 
   tags = merge(local.default_tags,
     {
-      "Name" = "Dockerserver-sg"
+      "Name" = "K8s-server-sg"
     }
   )
 }
 
-# Create ECR repository
-resource "aws_ecr_repository" "my_repo" {
-  name                 = "cats_and_dogs_repo"
+# Create Cats ECR repository
+resource "aws_ecr_repository" "cats_repo" {
+  name                 = "cats_repo"
   
   image_scanning_configuration {
     scan_on_push = true
@@ -128,7 +128,22 @@ resource "aws_ecr_repository" "my_repo" {
   
   tags = merge(local.default_tags,
     {
-      "Name" = "cats_and_dogs_repo"
+      "Name" = "cats_repo"
+    }
+  )
+}
+
+# Create Dogs ECR repository
+resource "aws_ecr_repository" "dogs_repo" {
+  name                 = "dogs_repo"
+  
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+  
+  tags = merge(local.default_tags,
+    {
+      "Name" = "dogs_repo"
     }
   )
 }
