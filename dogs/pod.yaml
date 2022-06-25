@@ -6,11 +6,11 @@ metadata:
   name: dogs-pod
 spec:
   containers:
-  - image: xyz
+  - image: 961974299592.dkr.ecr.us-east-1.amazonaws.com/dogs_repo:dogs-v11
     name: dogs-container
     ports:
     - containerPort: 80
-      protocol: TCP
+      hostPort: 8081
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
