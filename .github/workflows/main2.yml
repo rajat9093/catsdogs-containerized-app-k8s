@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [ master ]
     paths:
-      - dogs/*
+      - dogs/docker/*
 
 jobs:
   deploy:
