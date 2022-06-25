@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: cats
+  name: cats-replicaset
+spec:
+  replicas: 3
+  selectors:
+    matchLabels:
+      app: cats
+    template:
+      metadata:
+        labels:
+          app: cats
+      spec:
+        containers:
+          - image: xyz
+            name: cat-container

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cats-deployment
+  labels:
+    app: cats
+spec:
+  selector:
+    matchLabels:
+      app: cats
+  template:
+    metadata:
+      labels:
+        app: cats
+    spec:
+      containers:
+      - name: cats-container
+        image: xyz
+#        resources:
+ #         requests:
+#            cpu: 100m
+#            memory: 100Mi
+#        env:
+#        - name: GET_HOSTS_FROM
+#          value: dns
+        ports:
+        - containerPort: 80

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: dogs
+  name: dogs-replicaset
+spec:
+  replicas: 3
+  selectors:
+    matchLabels:
+      app: dogs
+    template:
+      metadata:
+        labels:
+          app: dogs
+      spec:
+        containers:
+          - image: xyz
+            name: dog-container

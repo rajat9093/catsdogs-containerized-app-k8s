@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: cats
+  name: cats-pod
+spec:
+  containers:
+  - image: xyz
+    name: cats-container
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
