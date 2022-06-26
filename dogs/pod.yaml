@@ -11,6 +11,3 @@ spec:
     ports:
     - containerPort: 80
       hostPort: 8081
-    resources: {}
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always

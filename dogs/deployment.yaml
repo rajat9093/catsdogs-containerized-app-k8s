@@ -5,6 +5,7 @@ metadata:
   labels:
     app: dogs
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: dogs
