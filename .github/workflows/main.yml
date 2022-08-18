@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: test
+      id: test
+      run: |
+        echo "Testing if staging part is running"
+        echo "Hope it works"
+    
     - name: Checkout
       uses: actions/checkout@v2
 
